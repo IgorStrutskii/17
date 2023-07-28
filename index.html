@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Створюємо сутності</title>
+  </head>
+  <body>
+    <script>
+      // Клас Людина
+      class Person {
+        constructor(name, age) {
+          this.name = name;
+          this.age = age;
+        }
+
+        displayInfo() {
+          console.log(`Ім'я: ${this.name}, Вік: ${this.age}`);
+        }
+      }
+
+      // Клас Автомобіль
+      class Car {
+        constructor(brand, model, year, licensePlate) {
+          this.brand = brand;
+          this.model = model;
+          this.year = year;
+          this.licensePlate = licensePlate;
+          this.owner = null;
+        }
+
+        setOwner(owner) {
+          if (owner.age > 18) {
+            this.owner = owner;
+          } else {
+            console.log(
+              `Автомобіль не може мати власника ${owner.name}, якщо йому меньше 18 років.`
+            );
+          }
+        }
+
+        displayInfo() {
+          console.log(
+            `Марка: ${this.brand}, Модель: ${this.model}, Рік виписку: ${this.year}, Номерний знак: ${this.licensePlate}`
+          );
+          if (this.owner) {
+            console.log("Власник:");
+            this.owner.displayInfo();
+          } else {
+            console.log("Автомобіль немає власника.");
+          }
+          console.log("-------------------------");
+        }
+      }
+
+      // Демонстрація
+
+      // Створення екземплярів класу Людина
+      const person1 = new Person("Оксана", 30);
+      const person2 = new Person("Ігор", 25);
+      const person3 = new Person("артем", 17);
+
+      // Створення екземплярів класу Автомобіль
+      const car1 = new Car("subaru", "outback", 2012, "AA4545AA");
+      const car2 = new Car("Lexus", "Rx350", 2020, "АА4646AA");
+
+      // Присвоєння власників автомобілям
+      car1.setOwner(person1);
+      car2.setOwner(person2);
+
+      // Виведення інформації про автомобілі
+      car1.displayInfo();
+      car2.displayInfo();
+
+      // Автомобіль не може мати власника, якщо йому менше 18 років.
+      car2.setOwner(person3);
+    </script>
+  </body>
+</html>
